@@ -63,26 +63,3 @@ def test_get_movie_images(monkeypatch):
 
 
 
-#допоміжний матеріал - підказки, видалити!
-#def test_get_movies_list_type_popular():
-   #movies_list = tmdb_client.get_movies_list(list_type="popular")
-   #assert movies_list is not None
-
-#def some_function_to_mock():
-   #raise Exception("Original was called")
-
-#def test_mocking(monkeypatch):
-   #my_mock = Mock()
-   #my_mock.return_value = 2
-   #monkeypatch.setattr("tests.test_tmdb.some_function_to_mock", my_mock)
-   #result = some_function_to_mock()
-   #assert result == 2
-
-
-#def test_get_single_movie_url():
-   # Підготовка даних
-   #endpoint = "https://api.themoviedb.org/3/movie/{movie_id}"
-   # Виклик коду, який ми тестуємо
-   #single_movie_url=tmdb_client.get_single_movie(endpoint=endpoint)
-   # Порівняння результатів
-   #assert single_movie_url == 
