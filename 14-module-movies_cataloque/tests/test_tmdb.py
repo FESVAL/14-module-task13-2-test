@@ -2,7 +2,7 @@ import pytest
 import requests
 from flask import Flask, render_template, url_for, request
 import tmdb_client
-import app, types
+from app import app
 from unittest.mock import Mock
 
 
@@ -60,12 +60,13 @@ def test_get_movie_images(monkeypatch):
    movie_images = tmdb_client.get_movie_images(movie_id="")
    assert movie_images == mock_movie_images
 
-#def test_homepage(monkeypatch):
-   #api_mock = Mock(return_value={'results': []})
-   #monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
-   #with app.test_client() as client:
-      #response = client.get('/')
-      #api_mock.assert_called_once_with('movie/popular')
+def test_homepage(monkeypatch):
+   api_mock = Mock(return_value={'results': []})
+   monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
+   with app.test_client() as client:
+      response = client.get('/')
+      api_mock.assert_called_once_with('movie/popular')
+
 
 @pytest.mark.parametrize('list_type', (
    ('popular'),
@@ -73,25 +74,15 @@ def test_get_movie_images(monkeypatch):
    ('now_playing'),
    ('upcoming')
 ))
-
 def test_homepage_list_types(monkeypatch, list_type):
     api_mock = Mock(return_value={'results': []})
     monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
     with app.test_client() as client:
-      response = client.get('/')
-      #(f"/?list_type={list_type}")
+      response = client.get(f"/list_type={list_type}")
       assert response.status_code == 200
-        #api_mock.assert_called_once_with('movie'/{list_type})
       api_mock.assert_called_once_with('movie/{list_type}')
 
-#@pytest.mark.parametrize("list_type", types)
-#def test_homepage_list_types(monkeypatch, list_type):
-    #api_mock = Mock(return_value={'results': []})
-    #monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
-    #with app.test_client() as client:
-        #response = client.get(f'/list_type={list_type}')
-        #assert response.status_code == 200
-        #api_mock.assert_called_once_with(f'movie/{list_type}')
+
 
 
 
