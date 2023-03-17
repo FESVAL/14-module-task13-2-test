@@ -2,7 +2,7 @@ import pytest
 import requests
 from flask import Flask, render_template, url_for, request
 import tmdb_client
-from main import app
+from app import app
 from unittest.mock import Mock
 
 
