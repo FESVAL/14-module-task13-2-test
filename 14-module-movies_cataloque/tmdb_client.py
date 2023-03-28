@@ -1,5 +1,6 @@
 import requests
 import os
+import random
 
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNTQ1ZjMwMTBmMjEwM2RiYTY0ZjMwMGYxNGQ4MmE4ZSIsInN1YiI6IjYzZmEyMjc1MzQ0YThlMDA4ZWM1NGY3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ma0KfWmd04R2hKopfjxY4sg9x44rPcT77BJ7Tw0BI8I"
 # os.environ.get("TMDB_API_TOKEN", "")
@@ -47,5 +48,8 @@ def get_movie_images(movie_id):
 
 
 def get_movies(how_many, list_type):
-    data = get_popular_movies(list_type)
-    return data["results"][:how_many]
+    data = get_movies_list(list_type)
+    results = data["results"][:how_many]
+    random.shuffle(results)
+    return results
+    # return data["results"][:how_many]
