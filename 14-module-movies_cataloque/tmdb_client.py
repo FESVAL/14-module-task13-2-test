@@ -49,17 +49,3 @@ def get_movie_images(movie_id):
 def get_movies(how_many, list_type):
     data = get_popular_movies(list_type)
     return data["results"][:how_many]
-
-
-# def get_movies(how_many, list_type):
-
-    if list_type == "popular":
-        data = get_movies_list('popular')
-    elif list_type == 'top_rated':
-        data = get_movies_list('top_rated')
-    elif list_type == 'upcoming':
-        data = get_movies_list('upcoming')
-    elif list_type == 'now_playing':
-        data = get_movies_list('now_playing')
-
-    return data["results"][:how_many]
